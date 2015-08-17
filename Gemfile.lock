@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    file-tail (1.1.0)
+      tins (~> 1.0)
+    minitest (5.7.0)
+    tins (1.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  file-tail
+  minitest
+
+BUNDLED WITH
+   1.10.2
