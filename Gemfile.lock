@@ -1,17 +1,28 @@
+PATH
+  remote: .
+  specs:
+    rails_log_deinterleaver (0.1.0)
+      file-tail (~> 1.1)
+      trollop (~> 2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
     file-tail (1.1.0)
       tins (~> 1.0)
     minitest (5.7.0)
+    rake (10.4.2)
     tins (1.6.0)
+    trollop (2.1.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  file-tail
-  minitest
+  bundler (~> 1.10)
+  minitest (~> 5.7)
+  rails_log_deinterleaver!
+  rake (~> 10.0)
 
 BUNDLED WITH
    1.10.2

@@ -1,8 +1,4 @@
-# A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "file-tail"
-
-group :development, :test do
-  gem 'minitest'
-end
+# Specify your gem's dependencies in rails_log_deinterleaver.gemspec
+gemspec
