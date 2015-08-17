@@ -6,6 +6,7 @@ This gem includes a command line script to parse the interleaved logs and output
 
 Note that I am using syslog/rails 3 so the logs will be in a slightly different format that what rails will output by default in Rails 4. But this library could be easily updated to support both.
 
+[![Build Status](https://travis-ci.org/mattfawcett/rails_log_deinterleaver.svg?branch=master)](https://travis-ci.org/mattfawcett/rails_log_deinterleaver)
 
 Install
 -------
