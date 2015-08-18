@@ -74,7 +74,9 @@ module RailsLogDeinterleaver
 
     def ensure_timeouts_logged
       expired_time = Time.now - @options[:request_timeout]
-      @pids.each do |pid, details|
+      # Loop over a clone of @pids because there is a chance that the parent thread
+      # will want to add to the @pids Hash whilst this is running, triggering an exception.
+      @pids.dup.each do |pid, details|
         if details[:last_seen_at] <= expired_time
           output_logs_for_pid(pid)
         end
