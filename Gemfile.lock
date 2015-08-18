@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_log_deinterleaver (0.1.0)
+    rails_log_deinterleaver (0.1.1)
       file-tail (~> 1.1)
       trollop (~> 2.1)
 
