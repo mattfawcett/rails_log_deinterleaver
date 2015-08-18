@@ -20,7 +20,7 @@ module RailsLogDeinterleaver
         self.ensure_timeouts_logged
       end
 
-      File.open(@filename) do |log|
+      File.open(@filename, 'r:UTF-8') do |log|
         log.extend(File::Tail)
         log.interval = 0.1
         log.backward(@options[:backward]) if @options[:backward]
@@ -31,6 +31,10 @@ module RailsLogDeinterleaver
     end
 
     def process_line(line)
+      # It is possible for the file to contain UTF-8 byte streams. Get rid of them here.
+      # String#encode does not do anything if source and destination encoding are the same,
+      # so encode to UTF-16 before converting back to UTF-8.
+      line = line.encode('UTF-16', :invalid => :replace, :replace => '').encode('UTF-8')
       pid = pid_for_line(line)
 
       if line.match(@options[:start_request_regex])

@@ -130,6 +130,20 @@ class RailsLogDeinterleaverTest < MiniTest::Test
     log_and_expect(raw, expected)
   end
 
+  def test_should_gracefully_handle_invalid_utf8
+    bad_char = 255.chr
+    raw = [
+      "Aug 16 06:24:59 rails0 myapp[1000]: Started GET \"/page#{bad_char}\" for 127.0.0.1 at 2015-08-16 06:24:59 -0400",
+      'Aug 16 06:24:59 rails0 myapp[1000]: Completed 200 OK in 20.2ms (Views: 19.4ms | ActiveRecord: 0.0ms)',
+    ]
+    expected = [
+      'Aug 16 06:24:59 rails0 myapp[1000]: Started GET "/page" for 127.0.0.1 at 2015-08-16 06:24:59 -0400',
+      'Aug 16 06:24:59 rails0 myapp[1000]: Completed 200 OK in 20.2ms (Views: 19.4ms | ActiveRecord: 0.0ms)',
+      '', ''
+    ]
+    log_and_expect(raw, expected)
+  end
+
   private
 
   def log_and_expect(log_lines, expected_lines, timeout=1)
